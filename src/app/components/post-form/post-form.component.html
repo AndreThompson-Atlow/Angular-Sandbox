@@ -1,0 +1,42 @@
+<h2>Add Post</h2>
+<div class="card card-body mb-3">
+  <form>
+    <div class="form-group">
+      <label>Title</label>
+      <input
+        [(ngModel)]="currentPost.title"
+        type="text"
+        name="title"
+        class="form-control"
+        #title
+      />
+    </div>
+    <div class="form-group">
+      <label>Body</label>
+      <input
+        [(ngModel)]="currentPost.body"
+        type="text"
+        name="body"
+        class="form-control"
+        #body
+      />
+    </div>
+    <input type="hidden" name="id" [(ngModel)]="currentPost.id" />
+    <button
+      *ngIf="!isEdit"
+      (click)="addPost(title.value, body.value)"
+      [disabled]="title.value.length < 1 || body.value.length < 1"
+      class="btn btn-dark btn-block"
+    >
+      Add Post
+    </button>
+    <button
+      *ngIf="isEdit"
+      (click)="updatePost(title.value, body.value)"
+      [disabled]="title.value.length < 1 || body.value.length < 1"
+      class="btn btn-warning btn-block"
+    >
+      Edit Post
+    </button>
+  </form>
+</div>
